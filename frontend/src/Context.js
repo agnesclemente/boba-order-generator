@@ -15,6 +15,8 @@ export const Context = createContext({
   setToppings: () => {},
   order: {},
   setOrder: () => {},
+  savedOrders: [],
+  setSavedOrders: () => {},
 });
 
 const ContextProvider = ({ children }) => {
@@ -42,6 +44,7 @@ const ContextProvider = ({ children }) => {
     drink: "",
     toppings: [],
   });
+  const [savedOrders, setSavedOrders] = useState([]);
 
   const initialContext = {
     darkMode,
@@ -58,6 +61,8 @@ const ContextProvider = ({ children }) => {
     setToppings,
     order,
     setOrder,
+    savedOrders,
+    setSavedOrders,
   };
 
   return <Context.Provider value={initialContext}>{children}</Context.Provider>;

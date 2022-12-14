@@ -21,6 +21,33 @@ app.get("/toppings", async (req, res) => {
     res.send(toppings);
 });
 
+app.get("/saved", async (req, res) => {
+    let saved = await db.getSaved().find().toArray();
+    res.status(200);
+    res.send(saved);
+});
+
+app.post("/saved/add", async (req, res) => {
+    const { drink, toppings } = req.body;
+    const order = {
+        drink: drink,
+        toppings: toppings,
+    }
+    let result = await db.getSaved().insertOne(order);
+    res.status(200);
+    res.send(result.insertedId);
+});
+
+app.delete("/saved/delete", async (req, res) => {
+    const { orderId } = req.body;
+    let result = await db.getSaved().deleteOne({
+        "_id": ObjectId(orderId)
+    });
+    res.status(200);
+    console.log(result);
+    res.send(result);
+});
+
 // app.post("/drinks/add", async (req, res) => {
 //     const { name, imgSrc } = req.body;
 //     console.log("h", date);

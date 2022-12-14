@@ -13,6 +13,7 @@ const connectToServer = async () => {
     dbConnection = client.db("boba");
     drinks = dbConnection.collection("drinks");
     toppings = dbConnection.collection("toppings");
+    saved = dbConnection.collection("saved");
 }
 
 module.exports = {
@@ -25,5 +26,8 @@ module.exports = {
     },
     getToppings: () => {
         return toppings;
+    },
+    getSaved: () => {
+        return saved;
     }
 };
