@@ -10,9 +10,9 @@ let habitCollection;
 const connectToServer = async () => {
     await client.connect()
 
-    dbConnection = client.db("tracker");
-    dailyCollection = dbConnection.collection("dailydata");
-    habitCollection = dbConnection.collection("habits");
+    dbConnection = client.db("boba");
+    drinks = dbConnection.collection("drinks");
+    toppings = dbConnection.collection("toppings");
 }
 
 module.exports = {
@@ -20,10 +20,10 @@ module.exports = {
     getDb: () => {
         return dbConnection;
     },
-    getDailyCollection: () => {
-        return dailyCollection;
+    getDrinks: () => {
+        return drinks;
     },
-    getHabitCollection: () => {
-        return habitCollection;
+    getToppings: () => {
+        return toppings;
     }
 };
